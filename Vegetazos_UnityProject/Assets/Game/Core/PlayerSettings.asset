@@ -16,15 +16,15 @@ MonoBehaviour:
   - Platform
   maxSlope: 45
   gravity: 3
-  speed: 10
+  speed: 1
   jumpForce: 4.8
   jumpCoolDown: 0.5
   dashDistance: 2
   dashSpeed: 10
   dashTime: 0.6
   dashCoolDown: 5
-  groundDistance: 0.499
-  groundSize: 0.109
+  groundDistance: 0.56
+  groundSize: 0.645
   coyoteTime: 0.5
   distanceToEnable: 0.5
   wallDistance: 0.3

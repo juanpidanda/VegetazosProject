@@ -43,18 +43,26 @@ namespace Xolito.Control
         public void Move(InputAction.CallbackContext context)
         {
             var direc = context.ReadValue<Vector2>().x;
-            if (mover.InteractWith_Movement(direc))
+            
+            if (context.performed)
             {
-                
-                if(direc != 0)
+                if (mover.InteractWith_Movement(direc))
                 {
-                    //Debug.Log("Direction " + direction);
-                 //   animatorXolos.SetBool("isMoving", true);
-                    ChangeSpriteOrientation(direc);
-                }
+                    
+                    if (direc != 0)
+                    {
+                        //Debug.Log("Direction " + direction);
+                        //   animatorXolos.SetBool("isMoving", true);
+                        ChangeSpriteOrientation(direc);
+                    }
 
-                //animatorXolos.SetInteger(0, (int)direction);
-                //source.PlayOneShot(pSettings.Get_Audio(BasicActions.Walk));
+                    //animatorXolos.SetInteger(0, (int)direction);
+                    //source.PlayOneShot(pSettings.Get_Audio(BasicActions.Walk));
+                }
+            }
+            else if (context.canceled)
+            {
+                mover.InteractWith_Movement(0);
             }
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Xolito.Control;
 using Xolito.Core;
@@ -26,6 +27,8 @@ namespace Xolito.Movement
         [SerializeField] private bool isTouchingTheWall = false;
         [SerializeField] private bool isWallRight = false;
         [SerializeField] private float angleOfContact = 0;
+        [SerializeField] bool haveGravity = false;
+        [SerializeField] bool inCoyote = false;
 
         Rigidbody2D rgb2d;
         BoxCollider2D boxCollider;
@@ -36,7 +39,7 @@ namespace Xolito.Movement
         Vector2 currentDirection = default;
         (bool isTouchingWall, bool isAtRight, float? distance) wallDetection;
         (float? distance, float currentVelocity) groundData = default;
-        BoxCollider2D groundToLand = default;
+        BoxCollider2D PlatformToLand = default;
         float dashSpeed = 0;
         Vector2 dashTarget = Vector2.zero;
         private bool shouldFall = false;
@@ -82,18 +85,40 @@ namespace Xolito.Movement
             cdJump = new CoolDownAction(pSettings.JumpCoolDown, Set_CanJump);
             cdDash = new CoolDownAction(pSettings.DashCoolDown);
             cdCoyote = new CoolDownAction(pSettings.CoyoteTime, Fall);
+
+            haveGravity = rgb2d.gravityScale == 1;
         }
 
         private void Update()
         {
+            inCoyote = !cdCoyote.CanUse;
             Check_Ground();
 
             Check_Wall();
 
-            if (currentDistances.distance.HasValue && currentDistances.currentFrames >= currentDistances.framesCount)
+            Move();
+
+            //if (currentDistances.distance.HasValue && currentDistances.currentFrames >= currentDistances.framesCount)
+            //{
+            //    Move_Gravity(false);
+            //    currentDistances = default;
+            //}
+            //else if (currentDistances.distance.HasValue && currentDistances.currentFrames < currentDistances.framesCount)
+            //    currentDistances.currentFrames++;
+        }
+
+        private void Move()
+        {
+            if (inDash || currentDirection.x == 0) return;
+
+            if (!wallDetection.isTouchingWall || ((currentDirection.x >= 0 && !wallDetection.isAtRight) || currentDirection.x < 0 && wallDetection.isAtRight))
             {
-                Move_Gravity(false);
-                currentDistances = default;
+                transform.Translate(currentDirection.x * pSettings.Speed * Time.deltaTime, 0, 0);
+                currentDirection.x = currentDirection.x > 0 ? 1 : -1;
+            }
+            else
+            {
+                print("stop");
             }
         }
         #endregion
@@ -101,17 +126,9 @@ namespace Xolito.Movement
         public bool InteractWith_Movement(float direction)
         {
             if (inDash) return false;
-
-            if (!wallDetection.isTouchingWall || ((direction >= 0 && !wallDetection.isAtRight) || direction < 0 && wallDetection.isAtRight))
-            {
-                transform.Translate(direction * pSettings.Speed * Time.deltaTime, 0, 0);
-                currentDirection.x = direction > 0 ? 1 : -1;
-            }
-            else
-            {
-                print("stop");
-            }
-
+            
+            currentDirection.x = direction;
+            
             return true;
         }
 
@@ -123,9 +140,9 @@ namespace Xolito.Movement
 
             if (/*!distance.HasValue*/ true)
             {
-                Move_Gravity();
+                Enable_Gravity();
                 Jump();
-
+                print("Jump");
                 StartCoroutine(cdJump.CoolDown());
             }
 
@@ -242,8 +259,8 @@ namespace Xolito.Movement
         {
             //this.shouldFall = shouldFall;
 
-            if (!IsGrounded)
-            Move_Gravity(shouldFall);
+            if (!PlatformToLand)
+                Enable_Gravity(shouldFall);
         }
 
         private void Check_Ground()
@@ -252,62 +269,77 @@ namespace Xolito.Movement
 
             if (distance.HasValue)
             {
-                if (groundToLand != null && groundToLand.gameObject != item && item.tag != "Platform")
+                print(item);
+
+                if (PlatformToLand && PlatformToLand.gameObject != item && !onAir && rgb2d.velocity.y == 0)
                 {
-                    //bool isTouching = item.GetComponent<BoxCollider2D>().IsTouching(boxCollider);
-                    //if (isTouching)
-                    //{
-                    //    if (groundToLand != null)
-                    //    {
-                    //        groundToLand.isTrigger = true;
-                    //        groundToLand = null;
-                    //    }
-                    //}
-                    //else if (cdCoyote.CanUse)
-                    //{
-                    //    //if (shouldFall)
-                    //    //{
-                    //    //    groundToLand.isTrigger = true;
-                    //    //    groundToLand = null;
-                    //    //    Move_Gravity();
-                    //    //}
-                    //    //else
-                    //        StartCoroutine(cdCoyote.CoolDown());
-                    //}
+                    if (cdCoyote.CanUse)
+                    {
+                        //PlatformToLand = item.GetComponent<BoxCollider2D>();
+                        Enable_Gravity();
+                        PlatformToLand = null;
+
+                        StartCoroutine(cdCoyote.CoolDown());
+                        return;
+                    }
                     //StartCoroutine(cdCoyote.CoolDown());
                 }
-                else if (groundToLand != null && groundToLand.gameObject == item)
+
+                //
+                //else if (!groundToLand && distance < pSettings.DistanceToEnable && item.tag != "Platform")
+                //{
+                //    //if (onAir) return;
+
+                //    //currentDistances.finalDistance = distance.Value;
+                //    //currentDistances.
+                //    return;
+                //}
+
+                //Revisa si estas sobre la misma plataforma
+                else if (PlatformToLand && PlatformToLand.gameObject == item)
                 {
                     //groundToLand.isTrigger = false;
                     //print(groundToLand.gameObject.name + " Active ");
-                    return;
+                    //return;
+                    //Move_Gravity(false);
+                    //return;
+                    //if (!IsGrounded)
+                    //    Enable_Gravity(false);
                 }
 
-                //shouldFall = false;
-
-                if (groundToLand?.gameObject != item && item.tag == "Platform")
+                //Registra nueva plataforma
+                else if (PlatformToLand && PlatformToLand.gameObject != item && item.tag == "Platform")
                 {
-                    //if (groundToLand != null) groundToLand.isTrigger = true;
-
-                    groundToLand = item.GetComponent<BoxCollider2D>();
+                    PlatformToLand = item.GetComponent<BoxCollider2D>();
                     //groundToLand.isTrigger = false;
-                    Check_CurrentDistances(true);
+                    //Check_CurrentDistances(true);
+                    Enable_Gravity();
                 }
 
-                if (distance < pSettings.DistanceToEnable)
+                //Revisa si ya estas tocando el piso
+                if (distance < pSettings.DistanceToEnable && rgb2d.velocity.y <= 0)
                 {
                     IsGrounded = true;
-                    Move_Gravity(false);
+                    Enable_Gravity(false);
                 }
                 else IsGrounded = false;
+
+                PlatformToLand = item.GetComponent<BoxCollider2D>();
             }
-            else if (groundToLand != null && !onAir && rgb2d.velocity.y == 0)
+            else if (PlatformToLand && cdCoyote.CanUse && rgb2d.velocity.y == 0)
             {
-                //groundToLand.isTrigger = true;
-                groundToLand = null;
-                IsGrounded = false;
+                Enable_Gravity();
+                PlatformToLand = null;
+
                 StartCoroutine(cdCoyote.CoolDown());
             }
+            //else if (!onAir && rgb2d.velocity.y == 0)
+            //{
+            //    //groundToLand.isTrigger = true;
+            //    PlatformToLand = null;
+            //    IsGrounded = true;
+            //    //StartCoroutine(cdCoyote.CoolDown());
+            //}
         }
 
         private void Check_Wall()
@@ -362,9 +394,10 @@ namespace Xolito.Movement
 
         private void Set_CanJump(bool canJump) => this.canJump = canJump;
 
-        private void Move_Gravity(bool shouldEnable = true)
+        private void Enable_Gravity(bool shouldEnable = true)
         {
             rgb2d.gravityScale = shouldEnable ? 1 : 0;
+            haveGravity = shouldEnable;
             if (!shouldEnable) Clear_YVelocity();
         }
 
