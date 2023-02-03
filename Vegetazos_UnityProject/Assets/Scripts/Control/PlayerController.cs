@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Xolito.Utilities;
 using Xolito.Core;
+using UnityEngine.InputSystem;
 
 namespace Xolito.Control
 {
@@ -32,23 +33,24 @@ namespace Xolito.Control
 
         private void Start()
         {
-            
+
         }
 
-      
+
         #endregion
 
         #region Public methods
-        public void Move(float direction)
+        public void Move(InputAction.CallbackContext context)
         {
-            if (mover.InteractWith_Movement(direction))
+            var direc = context.ReadValue<Vector2>().x;
+            if (mover.InteractWith_Movement(direc))
             {
-
-                if(direction != 0)
+                
+                if(direc != 0)
                 {
                     //Debug.Log("Direction " + direction);
-                    animatorXolos.SetBool("isMoving", true);
-                    ChangeSpriteOrientation(direction);
+                 //   animatorXolos.SetBool("isMoving", true);
+                    ChangeSpriteOrientation(direc);
                 }
 
                 //animatorXolos.SetInteger(0, (int)direction);
@@ -70,7 +72,7 @@ namespace Xolito.Control
 
         
 
-        public void Dash()
+        public void Dash(InputAction.CallbackContext context)
         {
             if (mover.InteractWithDash())
             {

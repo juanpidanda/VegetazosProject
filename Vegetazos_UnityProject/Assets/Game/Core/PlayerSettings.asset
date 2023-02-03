@@ -16,7 +16,7 @@ MonoBehaviour:
   - Platform
   maxSlope: 45
   gravity: 3
-  speed: 2.5
+  speed: 10
   jumpForce: 4.8
   jumpCoolDown: 0.5
   dashDistance: 2
