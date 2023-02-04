@@ -8,9 +8,10 @@ public class GameLobby : MonoBehaviour
 
     public int currentPlayerID;
 
+    [Header("Game Lobby")]
     public Sprite[] characterPortraits;
     public GameObject[] characterSlots;
-
+    public List<PlayerData> playersDataList;
 
     [Header("Character By Player Portraits")]
     public Sprite[] nopalPlayerPortraits;
@@ -19,12 +20,33 @@ public class GameLobby : MonoBehaviour
     public Sprite[] calabazaPlayerPortraits;
     public Sprite[] tomatePlayerPortraits;
 
+
+
     private void Awake()
     {
         foreach(GameObject slot in characterSlots)
         {
             Image characterImage = slot.GetComponent<CharacterSlotBehaviour>().characterPortrait;
             characterImage.gameObject.SetActive(false);
+        }
+    }
+
+    public void SetFightersData()
+    {
+        playersDataList.Clear();
+        for (int slotID = 0; slotID < characterSlots.Length; slotID++)
+        {
+            CharacterSlotBehaviour currentSlot = characterSlots[slotID].GetComponent<CharacterSlotBehaviour>();
+            currentSlot.CreatePlayer(slotID);
+            if (currentSlot.characterSlotData.IsFighterComplete())
+            {
+                PlayerData slotData = currentSlot.characterSlotData;
+                playersDataList.Add(slotData);
+            }
+        }
+        if(GameManager.gameManagerInstance != null)
+        {
+            GameManager.gameManagerInstance.SetPlayersData(playersDataList);
         }
     }
     public void DeletePlayerData(int playerID)
@@ -35,6 +57,7 @@ public class GameLobby : MonoBehaviour
     public void SetCharacterToCharacterSlot(int characterID)
     {
         CharacterSlotBehaviour currentSlot = characterSlots[currentPlayerID].GetComponent<CharacterSlotBehaviour>();
+        currentSlot.selectedCharacterID = characterID;
         if (!currentSlot.characterPortrait.gameObject.activeInHierarchy)
         {
             currentSlot.characterPortrait.gameObject.SetActive(true);

@@ -607,7 +607,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 300
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3037,6 +3037,7 @@ MonoBehaviour:
   - {fileID: 1669911139}
   - {fileID: 709442679}
   - {fileID: 1632676400}
+  playersDataList: []
   nopalPlayerPortraits:
   - {fileID: 21300000, guid: 0e52cee878bb0ba4b8402db81da32e73, type: 3}
   - {fileID: 21300000, guid: 4517e573c4108d34fa5e6396b27635b8, type: 3}

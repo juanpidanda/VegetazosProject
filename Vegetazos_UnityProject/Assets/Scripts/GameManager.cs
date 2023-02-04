@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private GameScenes currentScene = GameScenes.MAINMENU;
     public SceneStates sceneState = SceneStates.STARTING;
 
-
+    public PlayerData[] playersData;
     //[Header("Other Managers")]
     private MenusBehaviour menusManager;
     private void Awake()
@@ -109,12 +109,17 @@ public class GameManager : MonoBehaviour
             case GameScenes.MAINMENU:
                 break;
             case GameScenes.CHARACTERSELECTOR:
+                FindObjectOfType<GameLobby>().SetFightersData();
                 break;
             case GameScenes.COMBATSCENE:
                 break;
         }
     }
 
+    public void SetPlayersData(List<PlayerData> playersDataList)
+    {
+        playersData = playersDataList.ToArray();
+    }
     void LoadSceneByIndex(int sceneID)
     {
         if(SceneManager.GetActiveScene().buildIndex != sceneID)
