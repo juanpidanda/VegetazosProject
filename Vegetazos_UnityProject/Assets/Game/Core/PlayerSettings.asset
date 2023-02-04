@@ -15,18 +15,18 @@ MonoBehaviour:
   tagsToAvoid:
   - Platform
   maxSlope: 45
-  gravity: 3
-  speed: 1
-  jumpForce: 4.8
+  gravity: 2.92
+  speed: 8.08
+  jumpForce: 13.51
   jumpCoolDown: 0.5
-  dashDistance: 2
-  dashSpeed: 10
-  dashTime: 0.6
-  dashCoolDown: 5
-  groundDistance: 0.56
-  groundSize: 0.645
-  coyoteTime: 0.5
-  distanceToEnable: 0.5
+  dashDistance: 5.15
+  dashSpeed: 12.05
+  dashTime: 0.1
+  dashCoolDown: 1
+  groundDistance: 1.16
+  groundSize: 0.26
+  coyoteTime: 0.1
+  distanceToEnable: 0.44
   wallDistance: 0.3
   wallSize: 0.4
   jumpSize: 0.1

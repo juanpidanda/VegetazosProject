@@ -80,7 +80,7 @@ namespace Xolito.Control
         #endregion
 
         #region Properties
-        public float Gravity { get => gravity * Time.deltaTime; }
+        public float Gravity { get => gravity; }
         public float Speed { get => speed; }
         public float JumpForce { get => jumpForce; }
         public float JumpCoolDown { get => jumpCoolDown; }
