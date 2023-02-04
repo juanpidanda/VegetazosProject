@@ -11,7 +11,7 @@ using static Xolito.Utilities.Utilities;
 namespace Xolito.Movement
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    public class Mover : MonoBehaviour
+    public class RadishMovement : MonoBehaviour
     {
         #region variables
         [Header("References")]
@@ -26,7 +26,7 @@ namespace Xolito.Movement
         [SerializeField] protected bool isBesidePlatform = false;
         [SerializeField] protected bool isTouchingTheWall = false;
         [SerializeField] protected bool isWallRight = false;
-     //   [SerializeField] private float angleOfContact = 0;
+        //   [SerializeField] private float angleOfContact = 0;
         [SerializeField] protected bool haveGravity = false;
         [SerializeField] protected bool inCoyote = false;
 
@@ -75,7 +75,7 @@ namespace Xolito.Movement
         {
             rgb2d = this.gameObject.GetComponent<Rigidbody2D>();
             boxCollider = GetComponent<BoxCollider2D>();
-            
+
         }
 
         private void Start()
@@ -140,7 +140,7 @@ namespace Xolito.Movement
         {
             if (!IsGrounded || inDash || !cdJump.CanUse) return false;
 
-            (float ? distance, GameObject item) = Get_DistanceToMove(Vector2.up, pSettings.JumpSize);
+            (float? distance, GameObject item) = Get_DistanceToMove(Vector2.up, pSettings.JumpSize);
 
             if (/*!distance.HasValue*/ true)
             {
@@ -183,7 +183,7 @@ namespace Xolito.Movement
 
 
 
-        public (float? distance, GameObject hit) Get_DistanceToMove(Vector2 Destiny, float size) 
+        public (float? distance, GameObject hit) Get_DistanceToMove(Vector2 Destiny, float size)
         {
             RaycastHit2D[] hit2D;
             //Vector3 startPosition = Get_VectorWithOffset(Destiny, offset) + new Vector3(Destiny.x, Destiny.y) * boxCollider.bounds.extents.x;
@@ -194,13 +194,13 @@ namespace Xolito.Movement
             {
                 x = Destiny switch
                 {
-                    { x: float nx} when (nx == -1 || nx == 1) => boxCollider.size.x * size,
-                    _=> .1f
+                    { x: float nx } when (nx == -1 || nx == 1) => boxCollider.size.x * size,
+                    _ => .1f
                 },
                 y = Destiny switch
                 {
                     { y: float ny } when (ny == -1 || ny == 1) => boxCollider.size.y * size,
-                    _=> .1f
+                    _ => .1f
                 }
             };
             float angle = Get_Angle(Destiny.normalized);
@@ -269,7 +269,7 @@ namespace Xolito.Movement
             }
         }
 
-        
+
 
         #endregion
 
@@ -363,7 +363,7 @@ namespace Xolito.Movement
 
         private void Check_Wall()
         {
-            (float ? distance, GameObject item) = Get_DistanceToMove(currentDirection * pSettings.WallDistance, pSettings.WallSize);
+            (float? distance, GameObject item) = Get_DistanceToMove(currentDirection * pSettings.WallDistance, pSettings.WallSize);
             if (distance.HasValue)
             {
                 if (item.tag == "Platform")
@@ -390,7 +390,7 @@ namespace Xolito.Movement
 
         private float Check_Dash()
         {
-            (float ? distance, _) = Get_DistanceToMove(currentDirection * pSettings.DashDistance, .9f);
+            (float? distance, _) = Get_DistanceToMove(currentDirection * pSettings.DashDistance, .9f);
 
             if (distance.HasValue && distance > pSettings.DashDistance)
                 return distance.Value;
