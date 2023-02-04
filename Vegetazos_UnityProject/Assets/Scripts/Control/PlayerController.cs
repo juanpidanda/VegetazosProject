@@ -89,15 +89,19 @@ namespace Xolito.Control
             }
         }
 
-        public void Jump()
+        public void Jump(InputAction.CallbackContext context)
         {
-            if (mover.InteractWith_Jump())
+            if(context.performed)
             {
+              if (mover.InteractWith_Jump())
+              {
                 animatorXolos.SetTrigger("jump");
 
                 if(source && !source.isPlaying)
                 source?.PlayOneShot(pSettings.Get_Audio(BasicActions.Jump));
+              }
             }
+
         }
         #endregion
     }

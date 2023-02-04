@@ -26,7 +26,7 @@ namespace Xolito.Movement
         [SerializeField] private bool isBesidePlatform = false;
         [SerializeField] private bool isTouchingTheWall = false;
         [SerializeField] private bool isWallRight = false;
-        [SerializeField] private float angleOfContact = 0;
+     //   [SerializeField] private float angleOfContact = 0;
         [SerializeField] bool haveGravity = false;
         [SerializeField] bool inCoyote = false;
 
@@ -86,7 +86,7 @@ namespace Xolito.Movement
             cdDash = new CoolDownAction(pSettings.DashCoolDown);
             cdCoyote = new CoolDownAction(pSettings.CoyoteTime, Fall);
 
-            haveGravity = rgb2d.gravityScale == 1;
+            haveGravity = rgb2d.gravityScale == pSettings.Gravity;
         }
 
         private void Update()
@@ -125,7 +125,6 @@ namespace Xolito.Movement
 
         public bool InteractWith_Movement(float direction)
         {
-            if (inDash) return false;
             
             currentDirection.x = direction;
             
@@ -269,7 +268,6 @@ namespace Xolito.Movement
 
             if (distance.HasValue)
             {
-                print(item);
 
                 if (PlatformToLand && PlatformToLand.gameObject != item && !onAir && rgb2d.velocity.y == 0)
                 {
@@ -396,7 +394,7 @@ namespace Xolito.Movement
 
         private void Enable_Gravity(bool shouldEnable = true)
         {
-            rgb2d.gravityScale = shouldEnable ? 1 : 0;
+            rgb2d.gravityScale = shouldEnable ? pSettings.Gravity : 0;
             haveGravity = shouldEnable;
             if (!shouldEnable) Clear_YVelocity();
         }
