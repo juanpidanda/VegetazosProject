@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 3188041613540778979}
   - component: {fileID: 3451024246431403129}
   - component: {fileID: 4061242296810954231}
+  - component: {fileID: 5821508787515095554}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -346,11 +347,35 @@ MonoBehaviour:
     m_ActionId: d1e1cff0-6e95-4848-a1f0-7ff732a5c34b
     m_ActionName: Move/Jump[/Keyboard/w]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4061242296810954231}
+        m_TargetAssemblyTypeName: Xolito.Control.CarrotController, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1be47348-f87a-4f80-9f85-bea362747ae2
     m_ActionName: Move/Attack[/Keyboard/b,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4061242296810954231}
+        m_TargetAssemblyTypeName: Xolito.Control.CarrotController, Assembly-CSharp
+        m_MethodName: Defense
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a9f44062-bdc6-4814-9f8d-1513b3b42ede
     m_ActionName: Move/Defense[/Keyboard/s,/XInputControllerWindows/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 1
@@ -417,16 +442,37 @@ MonoBehaviour:
   source: {fileID: 0}
   animatorXolos: {fileID: 3188041613540778979}
   pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
+  fightingSystem: {fileID: 5821508787515095554}
   jump: {fileID: 0}
   dash: {fileID: 0}
   characterSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 681f8408c6549c14281bfd5b7896801f, type: 3}
+  - {fileID: 21300000, guid: 7c9b1eee7a09dd048ab77f30105b1cb8, type: 3}
+  - {fileID: 21300000, guid: 49a67f5c813a65f40a86d27dea55e980, type: 3}
+  - {fileID: 21300000, guid: 9ecc5a7e77dd81b43abb20e88ebf0bba, type: 3}
+  - {fileID: 21300000, guid: fb8211875a873964abab6abf96d46b55, type: 3}
   spriteRenderer: {fileID: 6240193961503834903}
   dashTrail: {fileID: 4399571012557625111}
+--- !u!114 &5821508787515095554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188041613540778972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba210a5d1b6e93446b3e83a5c0f2d0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifesLeft: 0
+  lifePoints: 0
+  damage: 0
+  attackDuration: 0
+  attackCooldown: 0
+  canAttack: 0
+  isLookingRight: 0
+  hitbox: {fileID: 0}
 --- !u!1 &4399571012557625111
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +568,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9811321, g: 0.18974723, b: 0.18974723, a: 1}
+      key0: {r: 0.24635817, g: 0.9622642, b: 0.049928807, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

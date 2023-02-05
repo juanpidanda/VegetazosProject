@@ -18,7 +18,7 @@ namespace Xolito.Control
         #region variables
         public Animator animatorXolos;
         [SerializeField] PlayerSettings pSettings = null;
-        protected Movement.PumpkinMover mover;
+        protected Movement.CarrotMover mover;
         public PlayerFightingSystem fightingSystem;
 
         public AudioClip jump, dash;
@@ -31,7 +31,7 @@ namespace Xolito.Control
         private void Awake()
         {
             animatorXolos = GetComponent<Animator>();
-            mover = GetComponent<Movement.PumpkinMover>();
+            mover = GetComponent<Movement.CarrotMover>();
 
 
         }

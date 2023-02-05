@@ -174,6 +174,12 @@ namespace Xolito.Movement
             return true;
         }
 
+        public virtual bool InteractWithAttack()
+        {
+            if (inDash) return false;
+
+            return true;
+        }
         //--SpecialAtttack--//
         public virtual bool InteractWithSpecialAttack()
         {
