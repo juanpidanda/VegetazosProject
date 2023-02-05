@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace Xolito.Control
 {
-    public class PlayerController : MonoBehaviour
+    public class TomatoController : MonoBehaviour
     {
         //BORRAR SI ROMPE ALGO
         #region AUDIO 
@@ -18,8 +18,8 @@ namespace Xolito.Control
         #region variables
         public Animator animatorXolos;
         [SerializeField] PlayerSettings pSettings = null;
-        protected Movement.Mover mover;
-        
+        protected Movement.TomatoMover mover;
+
         public AudioClip jump, dash;
         #endregion
 
@@ -27,8 +27,8 @@ namespace Xolito.Control
         private void Awake()
         {
             animatorXolos = GetComponent<Animator>();
-            mover = GetComponent<Movement.Mover>();
-            
+            mover = GetComponent<Movement.TomatoMover>();
+
 
         }
 
@@ -43,14 +43,14 @@ namespace Xolito.Control
         #region Public methods
         public virtual void Move(InputAction.CallbackContext context)
         {
-            //print("entrobase");
+            print("entrobase");
             var direc = context.ReadValue<Vector2>().x;
-            
+
             if (context.performed)
             {
                 if (this.mover.InteractWith_Movement(direc))
                 {
-                    
+
                     if (direc != 0)
                     {
                         //Debug.Log("Direction " + direction);
@@ -65,7 +65,7 @@ namespace Xolito.Control
             else if (context.canceled)
             {
                 this.mover.InteractWith_Movement(0);
-                
+
             }
         }
 
@@ -81,7 +81,6 @@ namespace Xolito.Control
             }
         }
 
-        
 
         public virtual void Dash(InputAction.CallbackContext context)
         {
@@ -94,23 +93,32 @@ namespace Xolito.Control
 
         public virtual void Jump(InputAction.CallbackContext context)
         {
-            
-            if(context.performed)
+            Debug.Log("entro1");
+            if (context.performed)
             {
-              if (mover.InteractWith_Jump())
-              {
-                animatorXolos.SetTrigger("jump");
+                if (mover.InteractWith_Jump())
+                {
+                    animatorXolos.SetTrigger("jump");
 
-                if(source && !source.isPlaying)
-                source?.PlayOneShot(pSettings.Get_Audio(BasicActions.Jump));
-              }
+                    if (source && !source.isPlaying)
+                        source?.PlayOneShot(pSettings.Get_Audio(BasicActions.Jump));
+                }
             }
 
         }
         public virtual void SpecialAttack(InputAction.CallbackContext context)
         {
-            Debug.Log("entro");
+            Debug.Log("cSA");
+
+
+            if (mover.InteractWithSpecialAttack())
+            {
+                animatorXolos.SetTrigger("specialattack");
+
+            }
+
         }
         #endregion
     }
 }
+
