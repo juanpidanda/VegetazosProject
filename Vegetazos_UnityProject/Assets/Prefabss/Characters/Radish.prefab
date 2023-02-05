@@ -308,9 +308,9 @@ MonoBehaviour:
   characterSprites:
   - {fileID: 21300000, guid: 9986862a61c44904189b2bb354da2369, type: 3}
   - {fileID: 21300000, guid: 9b79bf3930f4ad3459352b2aa3e527dc, type: 3}
-  - {fileID: 21300000, guid: 952f4add407487d4390dc7bc1539bd1f, type: 3}
-  - {fileID: 21300000, guid: 5a05872e05510c248b99f6938e483d30, type: 3}
-  - {fileID: 21300000, guid: f9bd6d0dc5afee5459dac212b056dd18, type: 3}
+  - {fileID: 21300000, guid: 511649d5c4a0c024a9d61b76e92928a3, type: 3}
+  - {fileID: 21300000, guid: 3d49404c1106ed94a94b12bdbb31b1ec, type: 3}
+  - {fileID: 21300000, guid: 1a0922db964137c4895cedeabe74681b, type: 3}
   spriteRenderer: {fileID: 5371072373795496264}
   dashTrail: {fileID: 6944822920870926057}
 --- !u!1 &5371072373795496264

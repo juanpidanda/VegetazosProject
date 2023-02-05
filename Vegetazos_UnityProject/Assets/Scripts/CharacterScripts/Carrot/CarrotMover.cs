@@ -184,7 +184,7 @@ namespace Xolito.Movement
         public virtual bool InteractWithSpecialAttack()
         {
 
-            laser.SetActive(true);
+            
 
             return true;
         }
