@@ -9,6 +9,7 @@ TagManager:
   - Manager/UI
   - Manager/Players
   - Hitbox
+  - Deadzone
   layers:
   - Default
   - TransparentFX

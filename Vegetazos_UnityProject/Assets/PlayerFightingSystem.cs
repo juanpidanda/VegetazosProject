@@ -43,6 +43,7 @@ public class PlayerFightingSystem : MonoBehaviour
     {
         if (lifePoints != currentLifePoints)
         {
+            force *= lifePoints;
             if(enemy != null)
                 gameObject.GetComponent<IHittable>().InteractWithDash(Vector2.right * (isLookingRight ? 1 : -1), lifePoints * force, 0.9f, lifePoints * force);
 
@@ -62,7 +63,6 @@ public class PlayerFightingSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Hitbox"))
         {
             PlayerFightingSystem enemyHit = collision.transform.parent.GetComponent<PlayerFightingSystem>();

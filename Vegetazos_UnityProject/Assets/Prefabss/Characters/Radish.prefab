@@ -434,6 +434,8 @@ MonoBehaviour:
   haveGravity: 0
   inCoyote: 0
   currentDirection: {x: 0, y: 0}
+  velocityDash: 0
+  wasHit: 0
 --- !u!114 &2734027880480991846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,10 +475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifesLeft: 3
-  lifePoints: 0
-  force: 0
-  elapsedTime: 0
-  wasHit: 0
+  lifePoints: 10
+  force: 0.5
   doomThreshold: 0
   damage: 10
   attackDuration: 2
