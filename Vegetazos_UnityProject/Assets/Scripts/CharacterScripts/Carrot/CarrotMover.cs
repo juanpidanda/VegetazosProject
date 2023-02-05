@@ -180,6 +180,7 @@ namespace Xolito.Movement
 
             return true;
         }
+
         //--SpecialAtttack--//
         public virtual bool InteractWithSpecialAttack()
         {

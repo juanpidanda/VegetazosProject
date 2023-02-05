@@ -81,10 +81,12 @@ namespace Xolito.Control
             if (direction < 0)
             {
                 spriteRenderer.GetComponent<SpriteRenderer>().flipX = true;
+                fightingSystem.isLookingRight = false;
             }
             else
             {
                 spriteRenderer.GetComponent<SpriteRenderer>().flipX = false;
+                fightingSystem.isLookingRight = true;
             }
         }
 

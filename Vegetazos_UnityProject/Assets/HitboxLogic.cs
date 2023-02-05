@@ -20,31 +20,16 @@ public class HitboxLogic : MonoBehaviour
 
     private void Update()
     {
-        if (fightingSystem.isLookingRight)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            Debug.Log("Is looking right");
-        }
-        if (!fightingSystem.isLookingRight)
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-            Debug.Log("is looking left");
-        }
         if (isAttacking)
         {
             elapsedTime += Time.deltaTime;
-            if (!fightingSystem.canAttack)
+            if (elapsedTime > fightingSystem.GetAttackDuration())
             {
-                elapsedTime += Time.deltaTime;
-                if (elapsedTime > fightingSystem.GetAttackDuration())
-                {
-                    fightingSystem.canAttack = true;
-                    elapsedTime = 0;
-                    this.gameObject.SetActive(false);
-                }
+                fightingSystem.canAttack = true;
+                elapsedTime = 0;
+                this.gameObject.SetActive(false);
             }
-        }
-        
+        }   
     }
 
     public float GetDamage()

@@ -33,7 +33,6 @@ namespace Xolito.Control
             animatorXolos = GetComponent<Animator>();
             mover = GetComponent<Movement.RadishMovement>();
             fightingSystem = GetComponent<PlayerFightingSystem>();
-
         }
 
         private void Start()
@@ -80,16 +79,14 @@ namespace Xolito.Control
             if (direction < 0)
             {
                 spriteRenderer.GetComponent<SpriteRenderer>().flipX = true;
-                fightingSystem.isLookingRight = true;
-            }
-            else
-            {
-                spriteRenderer.GetComponent<SpriteRenderer>().flipX = false;
                 fightingSystem.isLookingRight = false;
             }
+            else 
+            {
+                spriteRenderer.GetComponent<SpriteRenderer>().flipX = false;
+                fightingSystem.isLookingRight = true;
+            }
         }
-
-
 
         public virtual void Dash(InputAction.CallbackContext context)
         {

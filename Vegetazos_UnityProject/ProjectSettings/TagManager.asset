@@ -8,6 +8,7 @@ TagManager:
   - Manager/Menus
   - Manager/UI
   - Manager/Players
+  - Hitbox
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Hitbox
   - 
   - 
   - 
