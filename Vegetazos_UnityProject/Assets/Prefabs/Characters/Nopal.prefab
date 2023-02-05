@@ -129,10 +129,10 @@ GameObject:
   - component: {fileID: 3188041613540778916}
   - component: {fileID: 3188041613540778918}
   - component: {fileID: 3188041613540778979}
-  - component: {fileID: 4234831932670685832}
-  - component: {fileID: 2734027880480991846}
+  - component: {fileID: 7855121416701735821}
+  - component: {fileID: 2455906156530048279}
   m_Layer: 0
-  m_Name: Radish
+  m_Name: Nopal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,8 +281,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2734027880480991846}
-        m_TargetAssemblyTypeName: Xolito.Control.RadishController, Assembly-CSharp
+      - m_Target: {fileID: 7855121416701735821}
+        m_TargetAssemblyTypeName: Xolito.Control.NopalController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -297,8 +297,8 @@ MonoBehaviour:
     m_ActionName: Move/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2734027880480991846}
-        m_TargetAssemblyTypeName: Xolito.Control.RadishController, Assembly-CSharp
+      - m_Target: {fileID: 7855121416701735821}
+        m_TargetAssemblyTypeName: Xolito.Control.NopalController, Assembly-CSharp
         m_MethodName: Dash
         m_Mode: 0
         m_Arguments:
@@ -313,13 +313,13 @@ MonoBehaviour:
     m_ActionName: Move/Dash[/Keyboard/n]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3188041613540778972}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 7855121416701735821}
+        m_TargetAssemblyTypeName: Xolito.Control.NopalController, Assembly-CSharp
+        m_MethodName: SpecialAttack
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -329,9 +329,9 @@ MonoBehaviour:
     m_ActionName: Move/Ability[/Keyboard/m]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2734027880480991846}
-        m_TargetAssemblyTypeName: Xolito.Control.RadishController, Assembly-CSharp
-        m_MethodName: Jump
+      - m_Target: {fileID: 7855121416701735821}
+        m_TargetAssemblyTypeName: Xolito.Control.NopalController, Assembly-CSharp
+        m_MethodName: SpecialAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -343,6 +343,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d1e1cff0-6e95-4848-a1f0-7ff732a5c34b
     m_ActionName: Move/Jump[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1be47348-f87a-4f80-9f85-bea362747ae2
+    m_ActionName: Move/Attack[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9f44062-bdc6-4814-9f8d-1513b3b42ede
+    m_ActionName: Move/Defense[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Move
@@ -368,7 +376,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &4234831932670685832
+--- !u!114 &7855121416701735821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,7 +385,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3188041613540778972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc7204c99111fc141b5c36b71ff23c0a, type: 3}
+  m_Script: {fileID: 11500000, guid: fdf74ce15f7fd9544847a81bc489bc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  animatorXolos: {fileID: 3188041613540778979}
+  pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
+  jump: {fileID: 0}
+  dash: {fileID: 0}
+--- !u!114 &2455906156530048279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188041613540778972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605410c140751ec4b94f71ff603c87b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
@@ -391,20 +416,4 @@ MonoBehaviour:
   haveGravity: 0
   inCoyote: 0
   currentDirection: {x: 0, y: 0}
---- !u!114 &2734027880480991846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3188041613540778972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353f80e7d48adbd498d013bbea5994b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  animatorXolos: {fileID: 3188041613540778979}
-  pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
-  jump: {fileID: 0}
-  dash: {fileID: 0}
+  laser: {fileID: 0}
