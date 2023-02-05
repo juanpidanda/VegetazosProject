@@ -14,13 +14,6 @@ public class CombatSceneUIManager : MonoBehaviour
             fighterPortrait.SetActive(false);
         }
     }
-    private void Start()
-    {
-        if(GameManager.gameManagerInstance != null)
-        {
-            SetPlayerFighterPortraits(GameManager.gameManagerInstance.playersData);
-        }
-    }
     public void SetPlayerFighterPortraits(PlayerData[] playersData)
     {
 
@@ -33,8 +26,9 @@ public class CombatSceneUIManager : MonoBehaviour
             int characterID = playersData[playerIndex].GetSelectedCharacterID();
             string playerName = playersData[playerIndex].GetPlayerName();
             Sprite characterPortraitSprite = GetCharacterSprite(characterID, playerIndex);
-            
-            /* POR SI DEJA DE FUNCIONAR LA FUNCION GETCHARACTERSPRITE
+
+            #region POR SI DEJA DE FUNCIONAR LA FUNCION GETCHARACTERSPRITE
+            /* 
               Sprite characterPortraitSprite = null;
 
             switch (characterID)
@@ -56,8 +50,9 @@ public class CombatSceneUIManager : MonoBehaviour
                     break;
             }
             */
+            #endregion
 
-            if(characterPortraitSprite != null)
+            if (characterPortraitSprite != null)
             {
                 portraitBehaviour.SetFighterPortrait(characterPortraitSprite, playerName);
 
@@ -71,20 +66,14 @@ public class CombatSceneUIManager : MonoBehaviour
         {
             case 0:
                 return playerPortraitsSprites.nopalPlayerPortraits[playerID];
-                break;
             case 1:
                 return playerPortraitsSprites.rabanoPlayerPortraits[playerID];
-                break;
             case 2:
                 return playerPortraitsSprites.zanahoriaPlayerPortraits[playerID];
-                break;
             case 3:
                 return playerPortraitsSprites.calabazaPlayerPortraits[playerID];
-                break;
             case 4:
                 return playerPortraitsSprites.tomatePlayerPortraits[playerID];
-                break;
-
         }
         return null;
     }

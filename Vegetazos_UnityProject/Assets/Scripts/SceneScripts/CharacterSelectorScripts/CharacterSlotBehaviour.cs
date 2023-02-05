@@ -95,7 +95,7 @@ public class PlayerData
     {
         if(playerName != null && playerID >= 0 && playerID < 4 && characterID >= 0)
         {
-            Debug.Log(playerName + "with ID" + playerID.ToString() + ", playing as " + characterID + " ID character");
+            //Debug.Log(playerName + " with ID: " + playerID.ToString() + ", playing as " + characterID + " ID character");
             return true;
         }
         else

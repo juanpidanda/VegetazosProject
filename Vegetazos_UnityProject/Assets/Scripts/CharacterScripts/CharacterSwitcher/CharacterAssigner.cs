@@ -5,15 +5,15 @@ using UnityEngine.InputSystem;
 
 public class CharacterAssigner : MonoBehaviour
 {
-    public int playerIndex = 0;
+    //public int playerIndex = 0;
     [SerializeField] List<GameObject> characters = new List<GameObject>();
     PlayerInputManager inputManager;
 
     void Start()
     {
         inputManager = GetComponent<PlayerInputManager>();
-        playerIndex = Random.Range(0, characters.Count);
-        inputManager.playerPrefab = characters[playerIndex];
+        //playerIndex = Random.Range(0, characters.Count);
+        //inputManager.playerPrefab = characters[playerIndex];
     }
 
     // Update is called once per frame
@@ -22,9 +22,14 @@ public class CharacterAssigner : MonoBehaviour
         
     }
 
-    public void AssignCharactersToPlayers()
+    /*public void AssignCharactersToPlayers()
     {
         playerIndex ++;
         inputManager.playerPrefab = characters[playerIndex];
+    }*/
+
+    public void InstantiatePlayerAt(PlayerData playerData, Transform spawnPoint)
+    {
+        Instantiate(inputManager.playerPrefab = characters[playerData.GetSelectedCharacterID()], spawnPoint.position, Quaternion.identity, spawnPoint);
     }
 }
