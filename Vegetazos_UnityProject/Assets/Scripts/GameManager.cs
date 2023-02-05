@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameScenes.COMBATSCENE:
                 LoadSceneByIndex(2);
+                //GameObject.FindGameObjectWithTag("Manager/UI").GetComponent<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
+                //FindObjectOfType<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
                 sceneState = SceneStates.PLAYING;
                 break;
         }

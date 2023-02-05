@@ -3038,31 +3038,32 @@ MonoBehaviour:
   - {fileID: 709442679}
   - {fileID: 1632676400}
   playersDataList: []
-  nopalPlayerPortraits:
-  - {fileID: 21300000, guid: 0e52cee878bb0ba4b8402db81da32e73, type: 3}
-  - {fileID: 21300000, guid: 4517e573c4108d34fa5e6396b27635b8, type: 3}
-  - {fileID: 21300000, guid: 2ba77f0ae18957c43a272e17b79209db, type: 3}
-  - {fileID: 21300000, guid: 81cee6c2153e3984aa3c3c72d250dcda, type: 3}
-  rabanoPlayerPortraits:
-  - {fileID: 21300000, guid: 30fa7c2282961bf4fa6a550739cfb109, type: 3}
-  - {fileID: 21300000, guid: ec3351513ebe1694f99acab9f0f4ccda, type: 3}
-  - {fileID: 21300000, guid: b93463f6ea4ced34f9da2714240dc622, type: 3}
-  - {fileID: 21300000, guid: 2b57b63deb1a0dd4fbd7a8aa2c35946c, type: 3}
-  zanahoriaPlayerPortraits:
-  - {fileID: 21300000, guid: d6651b1cd6411b341a52b0d5af870ae7, type: 3}
-  - {fileID: 21300000, guid: c44a28436c635724090005355590cdbd, type: 3}
-  - {fileID: 21300000, guid: 5d7f2843ebdeb564ba0d2fa2ee64a60a, type: 3}
-  - {fileID: 21300000, guid: 0a1dc9a2f1cadee409ac0b55f4976d4f, type: 3}
-  calabazaPlayerPortraits:
-  - {fileID: 21300000, guid: e388255d75ce82b45b481db751480fa4, type: 3}
-  - {fileID: 21300000, guid: d1e2d3f93909d5340b202edc29622220, type: 3}
-  - {fileID: 21300000, guid: 9fc92d43f4753bf41a36888b45562e78, type: 3}
-  - {fileID: 21300000, guid: 41f1461e943099c4f911fcf83a5d260b, type: 3}
-  tomatePlayerPortraits:
-  - {fileID: 21300000, guid: 2fe44f5b3db7f3446a04612699252645, type: 3}
-  - {fileID: 21300000, guid: 87e0c1b705561ef4092740a20773459c, type: 3}
-  - {fileID: 21300000, guid: 8d8e04778cd13f64d9514fad39bcfb1c, type: 3}
-  - {fileID: 21300000, guid: 7240e42a4fd3172469b91f886da1b6b5, type: 3}
+  playerPortraits:
+    nopalPlayerPortraits:
+    - {fileID: 21300000, guid: 0e52cee878bb0ba4b8402db81da32e73, type: 3}
+    - {fileID: 21300000, guid: 4517e573c4108d34fa5e6396b27635b8, type: 3}
+    - {fileID: 21300000, guid: 2ba77f0ae18957c43a272e17b79209db, type: 3}
+    - {fileID: 21300000, guid: 81cee6c2153e3984aa3c3c72d250dcda, type: 3}
+    rabanoPlayerPortraits:
+    - {fileID: 21300000, guid: 30fa7c2282961bf4fa6a550739cfb109, type: 3}
+    - {fileID: 21300000, guid: ec3351513ebe1694f99acab9f0f4ccda, type: 3}
+    - {fileID: 21300000, guid: b93463f6ea4ced34f9da2714240dc622, type: 3}
+    - {fileID: 21300000, guid: 2b57b63deb1a0dd4fbd7a8aa2c35946c, type: 3}
+    zanahoriaPlayerPortraits:
+    - {fileID: 21300000, guid: d6651b1cd6411b341a52b0d5af870ae7, type: 3}
+    - {fileID: 21300000, guid: c44a28436c635724090005355590cdbd, type: 3}
+    - {fileID: 21300000, guid: 5d7f2843ebdeb564ba0d2fa2ee64a60a, type: 3}
+    - {fileID: 21300000, guid: 0a1dc9a2f1cadee409ac0b55f4976d4f, type: 3}
+    calabazaPlayerPortraits:
+    - {fileID: 21300000, guid: e388255d75ce82b45b481db751480fa4, type: 3}
+    - {fileID: 21300000, guid: d1e2d3f93909d5340b202edc29622220, type: 3}
+    - {fileID: 21300000, guid: 9fc92d43f4753bf41a36888b45562e78, type: 3}
+    - {fileID: 21300000, guid: 41f1461e943099c4f911fcf83a5d260b, type: 3}
+    tomatePlayerPortraits:
+    - {fileID: 21300000, guid: 2fe44f5b3db7f3446a04612699252645, type: 3}
+    - {fileID: 21300000, guid: 87e0c1b705561ef4092740a20773459c, type: 3}
+    - {fileID: 21300000, guid: 8d8e04778cd13f64d9514fad39bcfb1c, type: 3}
+    - {fileID: 21300000, guid: 7240e42a4fd3172469b91f886da1b6b5, type: 3}
 --- !u!1 &2006072745
 GameObject:
   m_ObjectHideFlags: 0

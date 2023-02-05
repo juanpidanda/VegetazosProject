@@ -14,11 +14,7 @@ public class GameLobby : MonoBehaviour
     public List<PlayerData> playersDataList;
 
     [Header("Character By Player Portraits")]
-    public Sprite[] nopalPlayerPortraits;
-    public Sprite[] rabanoPlayerPortraits;
-    public Sprite[] zanahoriaPlayerPortraits;
-    public Sprite[] calabazaPlayerPortraits;
-    public Sprite[] tomatePlayerPortraits;
+    public CharacterPortraitsSprites playerPortraits;
 
 
 
@@ -65,20 +61,31 @@ public class GameLobby : MonoBehaviour
         switch (characterID)
         {
             case 0:
-                currentSlot.SetCharacterPortrait(nopalPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.nopalPlayerPortraits[currentPlayerID]);
                 break;
             case 1:
-                currentSlot.SetCharacterPortrait(rabanoPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.rabanoPlayerPortraits[currentPlayerID]);
                 break;
             case 2:
-                currentSlot.SetCharacterPortrait(zanahoriaPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.zanahoriaPlayerPortraits[currentPlayerID]);
                 break;
             case 3:
-                currentSlot.SetCharacterPortrait(calabazaPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.calabazaPlayerPortraits[currentPlayerID]);
                 break;
             case 4:
-                currentSlot.SetCharacterPortrait(tomatePlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.tomatePlayerPortraits[currentPlayerID]);
                 break;
         }
     }
+}
+
+[System.Serializable]
+public class CharacterPortraitsSprites
+{
+    public Sprite[] nopalPlayerPortraits;
+    public Sprite[] rabanoPlayerPortraits;
+    public Sprite[] zanahoriaPlayerPortraits;
+    public Sprite[] calabazaPlayerPortraits;
+    public Sprite[] tomatePlayerPortraits;
+
 }
