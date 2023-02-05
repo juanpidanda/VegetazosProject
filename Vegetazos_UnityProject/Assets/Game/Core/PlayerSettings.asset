@@ -17,7 +17,7 @@ MonoBehaviour:
   maxSlope: 45
   gravity: 2.92
   speed: 8.08
-  jumpForce: 13.51
+  jumpForce: 15
   jumpCoolDown: 0.5
   dashDistance: 5.15
   dashSpeed: 12.05

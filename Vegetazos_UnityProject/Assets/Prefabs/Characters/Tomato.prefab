@@ -128,11 +128,11 @@ GameObject:
   - component: {fileID: 3188041613540778968}
   - component: {fileID: 3188041613540778916}
   - component: {fileID: 3188041613540778918}
-  - component: {fileID: 3188041613540778978}
-  - component: {fileID: 3188041613540778973}
   - component: {fileID: 3188041613540778979}
+  - component: {fileID: 9208817380417274380}
+  - component: {fileID: 3885271384474867986}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,8 +281,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3188041613540778973}
-        m_TargetAssemblyTypeName: Xolito.Control.PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 9208817380417274380}
+        m_TargetAssemblyTypeName: Xolito.Control.TomatoController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -297,8 +297,8 @@ MonoBehaviour:
     m_ActionName: Move/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3188041613540778973}
-        m_TargetAssemblyTypeName: Xolito.Control.PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 9208817380417274380}
+        m_TargetAssemblyTypeName: Xolito.Control.TomatoController, Assembly-CSharp
         m_MethodName: Dash
         m_Mode: 0
         m_Arguments:
@@ -312,13 +312,25 @@ MonoBehaviour:
     m_ActionId: 105ff61e-7020-4a04-97bd-e5d18beef50f
     m_ActionName: Move/Dash[/Keyboard/n]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9208817380417274380}
+        m_TargetAssemblyTypeName: Xolito.Control.TomatoController, Assembly-CSharp
+        m_MethodName: SpecialAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a719ff94-dc3e-490c-8550-c38c5bf97422
     m_ActionName: Move/Ability[/Keyboard/m]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3188041613540778973}
-        m_TargetAssemblyTypeName: Xolito.Control.PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 9208817380417274380}
+        m_TargetAssemblyTypeName: Xolito.Control.TomatoController, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -331,51 +343,19 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d1e1cff0-6e95-4848-a1f0-7ff732a5c34b
     m_ActionName: Move/Jump[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1be47348-f87a-4f80-9f85-bea362747ae2
+    m_ActionName: Move/Attack[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9f44062-bdc6-4814-9f8d-1513b3b42ede
+    m_ActionName: Move/Defense[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Move
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3188041613540778978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3188041613540778972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5317959370eeb034397c708c7e3cd4cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
-  inDash: 0
-  isGrounded: 0
-  canJump: 1
-  canDash: 0
-  isBesidePlatform: 0
-  isTouchingTheWall: 0
-  isWallRight: 0
-  angleOfContact: 0
-  haveGravity: 0
-  inCoyote: 0
---- !u!114 &3188041613540778973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3188041613540778972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a2500f3b4213247964627cbaea066b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  animatorXolos: {fileID: 3188041613540778979}
-  pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
-  jump: {fileID: 0}
-  dash: {fileID: 0}
 --- !u!95 &3188041613540778979
 Animator:
   serializedVersion: 5
@@ -396,3 +376,44 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &9208817380417274380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188041613540778972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a247aad901919c4798091d9ab7e892f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  animatorXolos: {fileID: 3188041613540778979}
+  pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
+  jump: {fileID: 0}
+  dash: {fileID: 0}
+--- !u!114 &3885271384474867986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188041613540778972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8b6805edc28484599dddc330d27493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
+  inDash: 0
+  isGrounded: 0
+  canJump: 1
+  canDash: 0
+  isBesidePlatform: 0
+  isTouchingTheWall: 0
+  isWallRight: 0
+  haveGravity: 0
+  inCoyote: 0
+  currentDirection: {x: 0, y: 0}
+  laser: {fileID: 0}
