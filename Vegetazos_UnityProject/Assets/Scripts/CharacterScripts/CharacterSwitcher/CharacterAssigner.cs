@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterSwitcher : MonoBehaviour
+public class CharacterAssigner : MonoBehaviour
 {
     public int playerIndex = 0;
     [SerializeField] List<GameObject> characters = new List<GameObject>();
