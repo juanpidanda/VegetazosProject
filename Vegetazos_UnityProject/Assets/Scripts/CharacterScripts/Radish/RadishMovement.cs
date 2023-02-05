@@ -146,7 +146,6 @@ namespace Xolito.Movement
             {
                 Enable_Gravity();
                 Jump();
-                print("Jump");
                 StartCoroutine(cdJump.CoolDown());
             }
 

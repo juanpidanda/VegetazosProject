@@ -228,13 +228,13 @@ MonoBehaviour:
     m_ActionName: Move/Dash[/Keyboard/n]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3188041613540778972}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2734027880480991846}
+        m_TargetAssemblyTypeName: Xolito.Control.RadishController, Assembly-CSharp
+        m_MethodName: SpecialAttack
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -259,7 +259,19 @@ MonoBehaviour:
     m_ActionId: d1e1cff0-6e95-4848-a1f0-7ff732a5c34b
     m_ActionName: Move/Jump[/Keyboard/w]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3188041613540778972}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1be47348-f87a-4f80-9f85-bea362747ae2
     m_ActionName: Move/Attack[/Keyboard/b]
   - m_PersistentCalls:
@@ -281,7 +293,7 @@ Animator:
   m_GameObject: {fileID: 3188041613540778972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9df8dffb6d638046bbf485bfb3d7c90, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
