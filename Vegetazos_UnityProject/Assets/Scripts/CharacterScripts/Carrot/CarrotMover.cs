@@ -11,7 +11,7 @@ using static Xolito.Utilities.Utilities;
 namespace Xolito.Movement
 {
     [RequireComponent(typeof(BoxCollider2D))]
-    public class CarrotMover : MonoBehaviour
+    public class CarrotMover : MonoBehaviour, IHittable
     {
         #region variables
         [Header("References")]
@@ -70,6 +70,20 @@ namespace Xolito.Movement
                 isGrounded = value;
             }
         }
+
+        public float velocityDash = 0;
+        public bool wasHit = false;
+        public float DashSpeed
+        {
+            get
+            {
+                if (wasHit)
+                    return velocityDash;
+                else
+                    return pSettings.DashSpeed;
+            }
+        }
+
         #endregion
 
         #region Unity methods
@@ -173,6 +187,29 @@ namespace Xolito.Movement
 
             return true;
         }
+
+        public bool InteractWithDash(Vector2 direction, float distance, float time, float speed)
+        {
+            print("Carrot MOVER");
+            wasHit = true;
+            velocityDash = speed;
+            //if (inDash || !canDash || !cdDash.CanUse) return false;
+            StopCoroutine(cdDash.CoolDown());
+            cdDash.Restart();
+            (float? finalDistance, _) = (distance, 0.1f); //Get_DistanceToMove(direction * distance, 0.9f);
+                
+            if (!finalDistance.HasValue || finalDistance >= pSettings.DashDistance)
+            {
+                finalDistance = distance;
+            }
+            else finalDistance += boxCollider.bounds.extents.x;
+
+            StartCoroutine(DashTo(currentDirection.normalized * finalDistance.Value, time));
+            StartCoroutine(cdDash.CoolDown());
+            return true;
+        }
+
+ 
 
         public virtual bool InteractWithAttack()
         {
@@ -476,7 +513,7 @@ namespace Xolito.Movement
 
             while (distance > 0)
             {
-                transform.position = Vector2.Lerp(transform.position, target, pSettings.DashSpeed * Time.deltaTime);
+                transform.position = Vector2.Lerp(transform.position, target, DashSpeed * Time.deltaTime);
                 distance -= pSettings.DashSpeed * Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
@@ -486,6 +523,7 @@ namespace Xolito.Movement
             this.GetComponent<Animator>().SetBool("isDashing", false);
             Clear_XVelocity();
             FreezeVerticalPosition(false);
+            wasHit = false;
             yield break;
         }
 

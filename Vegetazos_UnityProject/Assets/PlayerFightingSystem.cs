@@ -2,23 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Xolito.Movement;
+
+
 
 public class PlayerFightingSystem : MonoBehaviour
 {
     #region Variables
     public int lifesLeft;
     public float lifePoints;
+    private float currentLifePoints;
     public float force;
     public float doomThreshold;
     private float elapsedTime;
     [SerializeField] protected float damage;
     [SerializeField] protected float attackDuration;
 
+    private Transform initialPosition;
+
     private bool wasHit;
     public bool canAttack;
     public bool isLookingRight;
     public GameObject rightHitbox;
     public GameObject leftHitbox;
+    public IHittable enemy = null;
+
     #endregion
 
     #region Unity Functions
@@ -27,12 +35,19 @@ public class PlayerFightingSystem : MonoBehaviour
         rightHitbox.SetActive(false);
         leftHitbox.SetActive(false);
         wasHit = false;
+        currentLifePoints = lifePoints;
     }
     #endregion
 
     private void Update()
     {
+        if (lifePoints != currentLifePoints)
+        {
+            if(enemy != null)
+                gameObject.GetComponent<IHittable>().InteractWithDash(Vector2.right * (isLookingRight ? 1 : -1), lifePoints * force, 0.9f, lifePoints * force);
 
+            currentLifePoints = lifePoints;
+        }
         if (wasHit)
         {
             elapsedTime += Time.deltaTime;
@@ -47,27 +62,35 @@ public class PlayerFightingSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Hitbox"))
         {
-            Debug.Log("Hit!");
-        }
-        PlayerFightingSystem enemyHit = collision.GetComponent<PlayerFightingSystem>();
-        if (enemyHit != null)
-        {
-            enemyHit.lifePoints += enemyHit.GetDamage();
-
-            if(lifePoints > doomThreshold)
+            PlayerFightingSystem enemyHit = collision.transform.parent.GetComponent<PlayerFightingSystem>();
+            if (enemyHit != null)
             {
-                Vector3 direction = (gameObject.transform.position - collision.transform.position).normalized;
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.right * lifePoints, ForceMode2D.Impulse);
-                wasHit = false;
+                enemy = gameObject.GetComponent<IHittable>();
+                lifePoints += enemyHit.GetDamage();
+                Vector3 destiny = new Vector3(transform.position.x + (lifePoints * force), transform.position.y, transform.position.z);
+                //enemy.InteractWithDash(Vector2.right * (isLookingRight ? 1 : -1), lifePoints * force, 0.9f, force);
+                Debug.Log(gameObject.name + " received damage");
             }
-            Debug.Log("Hit confirmed");
+            else
+            {
+                Debug.Log("No hitbox");
+            }
         }
-        else
+
+        if (collision.CompareTag("Deadzone"))
         {
-            Debug.Log("No hitbox");
+            PlayerDied();
+            Debug.Log("Dead!");
         }
+ 
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        enemy = null;
     }
 
     #region Public Methods
@@ -89,6 +112,16 @@ public class PlayerFightingSystem : MonoBehaviour
     public int GetLifepoints()
     {
         return lifesLeft;
+    }
+
+    public Transform GetInitialPosition()
+    {
+        return initialPosition;
+    }
+
+    public void SetInitialPosition(Transform desiredPosition)
+    {
+        initialPosition = desiredPosition;
     }
     
     #endregion
@@ -116,8 +149,15 @@ public class PlayerFightingSystem : MonoBehaviour
 
     private void PlayerDied()
     {
+        if (lifesLeft <= 0)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         this.lifesLeft -= 1;
         lifePoints = 0;
+        gameObject.transform.position = initialPosition.position;
     }
     #endregion
 }
