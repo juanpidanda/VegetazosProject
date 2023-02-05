@@ -25,7 +25,19 @@ public class CombatSceneManager : MonoBehaviour
         }
 
     }
-
+    public void EditPlayerPortrait(GameObject playerClone)
+    {
+        int playerID = 0;
+        foreach(GameObject player in playersInGame)
+        {
+            if(playerClone == player)
+            {
+                uIManager.EditLifeInPortrait(playerID, playerClone.GetComponent<PlayerFightingSystem>().GetLifepoints());
+                Debug.Log("Es este mero we");
+            }
+            playerID++;
+        }
+    }
     private void InstantiatePlayersFighters()
     {
         PlayerData[] playersData = GameManager.gameManagerInstance.playersData;
@@ -34,6 +46,7 @@ public class CombatSceneManager : MonoBehaviour
             PlayerData currentPlayer = playersData[playerIndex];
             GameObject fighter = characterAssigner.InstantiatePlayerAt(currentPlayer, spawnPoints[playerIndex]);
 
+            fighter.GetComponent<PlayerFightingSystem>().SetInitialPosition(spawnPoints[playerIndex]);
             playersInGame.Add(fighter);
             switch (currentPlayer.GetSelectedCharacterID())
             {

@@ -198,7 +198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3188041613540778974
 Transform:
   m_ObjectHideFlags: 0
@@ -439,6 +439,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a9f44062-bdc6-4814-9f8d-1513b3b42ede
     m_ActionName: Move/Defense[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ba122541-189b-453a-9e12-368c9594672a
+    m_ActionName: Move/Pause[/Keyboard/p,/XInputControllerWindows/start,/XInputControllerWindows1/start]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Move

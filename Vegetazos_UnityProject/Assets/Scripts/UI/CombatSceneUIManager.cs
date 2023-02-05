@@ -61,6 +61,10 @@ public class CombatSceneUIManager : MonoBehaviour
         }
     }
 
+    public void EditLifeInPortrait(int playerId, int lifeRemaining)
+    {
+        fighterPortraits[playerId].GetComponent<FighterPortraitBehaviour>().SetLifesInPortrait(lifeRemaining);
+    }
     Sprite GetCharacterSprite(int characterID, int playerID)
     {
         switch (characterID)

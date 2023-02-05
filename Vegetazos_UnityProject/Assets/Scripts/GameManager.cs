@@ -109,20 +109,36 @@ public class GameManager : MonoBehaviour
         {
             case GameScenes.MAINMENU:
                 LoadSceneByIndex(0);
-                audioManager.PlaySong(audioManager.menuSong);
+                CallTrackScene();
                 break;
             case GameScenes.CHARACTERSELECTOR:
                 LoadSceneByIndex(1);
-                audioManager.PlaySong(audioManager.menuSong);
+                CallTrackScene();
                 break;
             case GameScenes.COMBATSCENE:
                 LoadSceneByIndex(2);
-                audioManager.PlaySong(audioManager.combatSong);
+                //audioManager.PlaySong(audioManager.combatSong);
                 //GameObject.FindGameObjectWithTag("Manager/UI").GetComponent<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
                 //FindObjectOfType<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
                 break;
         }
         Time.timeScale = 1.0f;
+    }
+
+    public void CallTrackScene()
+    {
+        switch (currentScene)
+        {
+            case GameScenes.MAINMENU:
+                audioManager.PlaySong(audioManager.menuSong);
+                break;
+            case GameScenes.CHARACTERSELECTOR:
+                audioManager.PlaySong(audioManager.menuSong);
+                break;
+            case GameScenes.COMBATSCENE:
+                audioManager.PlaySong(audioManager.combatSong);
+                break;
+        }
     }
 
     void EndCurrentScenePhase()

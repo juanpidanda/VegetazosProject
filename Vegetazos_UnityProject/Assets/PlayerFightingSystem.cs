@@ -80,7 +80,7 @@ public class PlayerFightingSystem : MonoBehaviour
             }
         }
 
-        if (collision.CompareTag("Deadzone"))
+        else if (collision.CompareTag("Deadzone"))
         {
             PlayerDied();
             Debug.Log("Dead!");
@@ -149,15 +149,19 @@ public class PlayerFightingSystem : MonoBehaviour
 
     private void PlayerDied()
     {
+        lifesLeft -= 1;
+        lifePoints = 0;
+
+
         if (lifesLeft <= 0)
         {
-            gameObject.SetActive(false);
-            return;
+            //gameObject.SetActive(false);
         }
-
-        this.lifesLeft -= 1;
-        lifePoints = 0;
-        gameObject.transform.position = initialPosition.position;
+        else
+        {
+            gameObject.transform.position = initialPosition.position;
+        }
+        FindObjectOfType<CombatSceneManager>().EditPlayerPortrait(this.gameObject);
     }
     #endregion
 }

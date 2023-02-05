@@ -17,9 +17,6 @@ public class TimersBehaviour : MonoBehaviour
     [SerializeField] private float timeLeftToEndGame;
     private float minutes, seconds;
 
-    private void Awake()
-    {
-    }
 
     private void Start()
     {
@@ -55,6 +52,7 @@ public class TimersBehaviour : MonoBehaviour
                     CountDownToStart();
                     if(timeLeftToStart <= 0)
                     {
+                        GameManager.gameManagerInstance.CallTrackScene();
                         startTimerText.gameObject.transform.parent.gameObject.SetActive(false);
                         GameManager.gameManagerInstance.SetSceneState(SceneStates.PLAYING);
                     }
