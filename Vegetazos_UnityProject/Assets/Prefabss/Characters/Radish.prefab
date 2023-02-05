@@ -287,6 +287,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  radishSprites:
+  - {fileID: 21300000, guid: 9986862a61c44904189b2bb354da2369, type: 3}
+  - {fileID: 21300000, guid: 9b79bf3930f4ad3459352b2aa3e527dc, type: 3}
+  - {fileID: 21300000, guid: 952f4add407487d4390dc7bc1539bd1f, type: 3}
+  - {fileID: 21300000, guid: 5a05872e05510c248b99f6938e483d30, type: 3}
+  - {fileID: 21300000, guid: f9bd6d0dc5afee5459dac212b056dd18, type: 3}
+  - {fileID: 21300000, guid: b684183a274c53b4db7a5880bd8bc6f7, type: 3}
   animatorXolos: {fileID: 3188041613540778979}
   pSettings: {fileID: 11400000, guid: abe9689cdafae73489a80d689d8a2b52, type: 2}
   jump: {fileID: 0}

@@ -13,6 +13,7 @@ namespace Xolito.Control
         //BORRAR SI ROMPE ALGO
         #region AUDIO 
         [SerializeField] public AudioSource source;
+        
         #endregion
 
         #region variables
@@ -20,8 +21,9 @@ namespace Xolito.Control
         [SerializeField] PlayerSettings pSettings = null;
         protected Movement.RadishMovement mover;
         public PlayerFightingSystem fightingSystem;
-
+        [SerializeField] List<Sprite> radishSprites = new List<Sprite>();
         public AudioClip jump, dash;
+        
         #endregion
 
         #region Unity methods
@@ -44,14 +46,15 @@ namespace Xolito.Control
         #region Public methods
         public virtual void Move(InputAction.CallbackContext context)
         {
-            //print("entrobase");
+            
             var direc = context.ReadValue<Vector2>().x;
 
             if (context.performed)
             {
                 if (this.mover.InteractWith_Movement(direc))
                 {
-
+                    Debug.Log("Entro");
+                    gameObject.GetComponent<SpriteRenderer>().sprite = radishSprites[1];
                     if (direc != 0)
                     {
                         //Debug.Log("Direction " + direction);
@@ -100,9 +103,13 @@ namespace Xolito.Control
 
             if (context.performed)
             {
+                
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = radishSprites[2];
                 if (mover.InteractWith_Jump())
                 {
-                    animatorXolos.SetTrigger("jump");
+                    
+                    
+                    
 
                     if (source && !source.isPlaying)
                         source?.PlayOneShot(pSettings.Get_Audio(BasicActions.Jump));
@@ -131,6 +138,7 @@ namespace Xolito.Control
         {
             if (context.performed)
             {
+                gameObject.GetComponent<SpriteRenderer>().sprite = radishSprites[5];
                 if (mover.InteractWithSpecialAttack())
                 {
                     animatorXolos.SetTrigger("specialattack");
