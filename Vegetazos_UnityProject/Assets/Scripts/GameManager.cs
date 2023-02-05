@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [Header("Scene References")]
     [Tooltip("La variable seteada es a donde el juego se ira al darle play.")]
     [SerializeField]private GameScenes currentScene = GameScenes.MAINMENU;
-    public SceneStates sceneState = SceneStates.STARTING;
+    [SerializeField]private SceneStates sceneState = SceneStates.STARTING;
 
     public PlayerData[] playersData;
     //[Header("Other Managers")]
@@ -53,6 +53,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetSceneState(SceneStates stateToSet)
+    {
+        if(stateToSet == SceneStates.ENDED)
+        {
+            Time.timeScale = 0.4f;
+        }
+        sceneState = stateToSet;
+    }
+    public SceneStates GetCurrentSceneState()
+    {
+        return sceneState;
+    }
     public GameScenes GetCurrentScene()
     {
         return currentScene;
@@ -98,9 +110,9 @@ public class GameManager : MonoBehaviour
                 LoadSceneByIndex(2);
                 //GameObject.FindGameObjectWithTag("Manager/UI").GetComponent<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
                 //FindObjectOfType<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
-                sceneState = SceneStates.PLAYING;
                 break;
         }
+        Time.timeScale = 1.0f;
     }
 
     void EndCurrentScenePhase()
@@ -133,6 +145,7 @@ public class GameManager : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCurrentScenePhase();
     }
 
     public void QuitGame()

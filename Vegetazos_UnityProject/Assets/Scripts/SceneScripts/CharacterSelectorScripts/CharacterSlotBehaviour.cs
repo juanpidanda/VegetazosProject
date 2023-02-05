@@ -42,7 +42,7 @@ public class CharacterSlotBehaviour : MonoBehaviour
     {
         if(slotPlayerName == null)
         {
-            characterSlotData.SetPlayerFighter("Player " + (playerID +1).ToString(), playerID, selectedCharacterID);
+            characterSlotData.SetPlayerFighter("Jugador " + (playerID +1).ToString(), playerID, selectedCharacterID);
         }
         else
         {
