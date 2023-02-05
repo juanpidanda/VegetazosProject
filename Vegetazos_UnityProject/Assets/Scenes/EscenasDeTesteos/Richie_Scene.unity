@@ -143,6 +143,10 @@ MonoBehaviour:
   playerIndex: 0
   characters:
   - {fileID: 3188041613540778972, guid: ae025660692757b48b311802269dbecf, type: 3}
+  - {fileID: 3188041613540778972, guid: 156ef61c874ed73449581cfebd1eed6e, type: 3}
+  - {fileID: 3188041613540778972, guid: 8a881488539f0f745a5faa99bdddb45b, type: 3}
+  - {fileID: 3188041613540778972, guid: d034b86130d637f40b588245df3bf62f, type: 3}
+  - {fileID: 3188041613540778972, guid: 28890dfd3f34fca41a06d520a0da15cf, type: 3}
 --- !u!1001 &1035152378
 PrefabInstance:
   m_ObjectHideFlags: 0
