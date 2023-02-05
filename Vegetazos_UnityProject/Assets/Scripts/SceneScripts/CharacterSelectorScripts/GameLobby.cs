@@ -14,7 +14,7 @@ public class GameLobby : MonoBehaviour
     public List<PlayerData> playersDataList;
 
     [Header("Character By Player Portraits")]
-    public CharacterPortraitsSprites playerPortraits;
+    public CharacterSprites playerPortraits;
 
 
 
@@ -61,31 +61,31 @@ public class GameLobby : MonoBehaviour
         switch (characterID)
         {
             case 0:
-                currentSlot.SetCharacterPortrait(playerPortraits.nopalPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.nopalPlayerSprites[currentPlayerID]);
                 break;
             case 1:
-                currentSlot.SetCharacterPortrait(playerPortraits.rabanoPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.rabanoPlayerSprites[currentPlayerID]);
                 break;
             case 2:
-                currentSlot.SetCharacterPortrait(playerPortraits.zanahoriaPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.zanahoriaPlayerSprites[currentPlayerID]);
                 break;
             case 3:
-                currentSlot.SetCharacterPortrait(playerPortraits.calabazaPlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.calabazaPlayerSprites[currentPlayerID]);
                 break;
             case 4:
-                currentSlot.SetCharacterPortrait(playerPortraits.tomatePlayerPortraits[currentPlayerID]);
+                currentSlot.SetCharacterPortrait(playerPortraits.tomatePlayerSprites[currentPlayerID]);
                 break;
         }
     }
 }
 
 [System.Serializable]
-public class CharacterPortraitsSprites
+public class CharacterSprites
 {
-    public Sprite[] nopalPlayerPortraits;
-    public Sprite[] rabanoPlayerPortraits;
-    public Sprite[] zanahoriaPlayerPortraits;
-    public Sprite[] calabazaPlayerPortraits;
-    public Sprite[] tomatePlayerPortraits;
+    public Sprite[] nopalPlayerSprites;
+    public Sprite[] rabanoPlayerSprites;
+    public Sprite[] zanahoriaPlayerSprites;
+    public Sprite[] calabazaPlayerSprites;
+    public Sprite[] tomatePlayerSprites;
 
 }

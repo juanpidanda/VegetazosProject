@@ -28,8 +28,8 @@ public class CharacterAssigner : MonoBehaviour
         inputManager.playerPrefab = characters[playerIndex];
     }*/
 
-    public void InstantiatePlayerAt(PlayerData playerData, Transform spawnPoint)
+    public GameObject InstantiatePlayerAt(PlayerData playerData, Transform spawnPoint)
     {
-        Instantiate(inputManager.playerPrefab = characters[playerData.GetSelectedCharacterID()], spawnPoint.position, Quaternion.identity, spawnPoint);
+        return Instantiate(inputManager.playerPrefab = characters[playerData.GetSelectedCharacterID()], spawnPoint.position, Quaternion.identity, spawnPoint);
     }
 }

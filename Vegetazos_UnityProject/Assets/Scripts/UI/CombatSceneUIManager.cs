@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatSceneUIManager : MonoBehaviour
 {
-    public CharacterPortraitsSprites playerPortraitsSprites;
+    public CharacterSprites playerPortraitsSprites;
 
     public GameObject[] fighterPortraits;
     private void Awake()
@@ -65,15 +65,15 @@ public class CombatSceneUIManager : MonoBehaviour
         switch (characterID)
         {
             case 0:
-                return playerPortraitsSprites.nopalPlayerPortraits[playerID];
+                return playerPortraitsSprites.nopalPlayerSprites[playerID];
             case 1:
-                return playerPortraitsSprites.rabanoPlayerPortraits[playerID];
+                return playerPortraitsSprites.rabanoPlayerSprites[playerID];
             case 2:
-                return playerPortraitsSprites.zanahoriaPlayerPortraits[playerID];
+                return playerPortraitsSprites.zanahoriaPlayerSprites[playerID];
             case 3:
-                return playerPortraitsSprites.calabazaPlayerPortraits[playerID];
+                return playerPortraitsSprites.calabazaPlayerSprites[playerID];
             case 4:
-                return playerPortraitsSprites.tomatePlayerPortraits[playerID];
+                return playerPortraitsSprites.tomatePlayerSprites[playerID];
         }
         return null;
     }
