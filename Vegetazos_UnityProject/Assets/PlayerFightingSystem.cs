@@ -32,6 +32,9 @@ public class PlayerFightingSystem : MonoBehaviour
             Debug.Log("Current life: " + lifePoints.ToString());
         }
     }
+
+    
+    
     #endregion
 
     #region Public Methods

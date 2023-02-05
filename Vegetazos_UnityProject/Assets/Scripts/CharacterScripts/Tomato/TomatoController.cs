@@ -21,6 +21,10 @@ namespace Xolito.Control
         protected Movement.TomatoMover mover;
 
         public AudioClip jump, dash;
+
+        [SerializeField] List<Sprite> characterSprites = new List<Sprite>();
+        public GameObject spriteRenderer;
+        public GameObject dashTrail;
         #endregion
 
         #region Unity methods
@@ -43,6 +47,8 @@ namespace Xolito.Control
         #region Public methods
         public virtual void Move(InputAction.CallbackContext context)
         {
+            dashTrail.SetActive(false);
+            spriteRenderer.GetComponent<SpriteRenderer>().sprite = characterSprites[1];
             print("entrobase");
             var direc = context.ReadValue<Vector2>().x;
 

@@ -21,6 +21,9 @@ namespace Xolito.Control
         protected Movement.NopalMover mover;
 
         public AudioClip jump, dash;
+        [SerializeField] List<Sprite> characterSprites = new List<Sprite>();
+        public GameObject spriteRenderer;
+        public GameObject dashTrail;
         #endregion
 
         #region Unity methods
@@ -48,6 +51,8 @@ namespace Xolito.Control
 
             if (context.performed)
             {
+                dashTrail.SetActive(false);
+                spriteRenderer.GetComponent<SpriteRenderer>().sprite = characterSprites[1];
                 if (this.mover.InteractWith_Movement(direc))
                 {
 

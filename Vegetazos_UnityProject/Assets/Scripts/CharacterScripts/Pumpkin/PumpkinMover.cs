@@ -46,7 +46,7 @@ namespace Xolito.Movement
         private bool shouldFall = false;
         protected bool onAir = false;
         protected (float? distance, float finalDistance, int framesCount, int currentFrames) currentDistances = default;
-        public GameObject laser;
+        
 
         LimitArea ground = default;
         LimitArea wall;
@@ -174,11 +174,18 @@ namespace Xolito.Movement
             return true;
         }
 
+        public virtual bool InteractWithAttack()
+        {
+            if (inDash) return false;
+
+            return true;
+        }
+
         //--SpecialAtttack--//
         public virtual bool InteractWithSpecialAttack()
         {
 
-            laser.SetActive(true);
+           
 
             return true;
         }
