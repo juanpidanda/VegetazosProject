@@ -25,10 +25,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]private SceneStates sceneState = SceneStates.STARTING;
 
     public PlayerData[] playersData;
+
+    [SerializeField]private AudioManager audioManager;
     //[Header("Other Managers")]
     private MenusBehaviour menusManager;
     private void Awake()
     {
+        audioManager = gameObject.GetComponentInChildren<AudioManager>();
         CheckForGameManagerInstance();
     }
 
@@ -53,6 +56,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CallHowToPlayScreen()
+    {
+
+    }
     public void SetSceneState(SceneStates stateToSet)
     {
         if(stateToSet == SceneStates.ENDED)
@@ -102,12 +109,15 @@ public class GameManager : MonoBehaviour
         {
             case GameScenes.MAINMENU:
                 LoadSceneByIndex(0);
+                audioManager.PlaySong(audioManager.menuSong);
                 break;
             case GameScenes.CHARACTERSELECTOR:
                 LoadSceneByIndex(1);
+                audioManager.PlaySong(audioManager.menuSong);
                 break;
             case GameScenes.COMBATSCENE:
                 LoadSceneByIndex(2);
+                audioManager.PlaySong(audioManager.combatSong);
                 //GameObject.FindGameObjectWithTag("Manager/UI").GetComponent<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
                 //FindObjectOfType<CombatSceneUIManager>().SetPlayerFighterPortraits(playersData);
                 break;
@@ -134,9 +144,9 @@ public class GameManager : MonoBehaviour
     {
         playersData = playersDataList.ToArray();
     }
-    void LoadSceneByIndex(int sceneID)
+    void LoadSceneByIndex(int sceneID, bool isRestarting = false)
     {
-        if(SceneManager.GetActiveScene().buildIndex != sceneID)
+        if(SceneManager.GetActiveScene().buildIndex != sceneID && !isRestarting)
         {
             SceneManager.LoadScene(sceneID);
         }
@@ -144,8 +154,7 @@ public class GameManager : MonoBehaviour
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        StartCurrentScenePhase();
+        SetNextScene(GameScenes.CHARACTERSELECTOR);
     }
 
     public void QuitGame()

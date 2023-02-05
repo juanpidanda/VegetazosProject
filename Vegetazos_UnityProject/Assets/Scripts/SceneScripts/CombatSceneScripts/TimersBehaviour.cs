@@ -19,8 +19,13 @@ public class TimersBehaviour : MonoBehaviour
 
     private void Awake()
     {
+    }
+
+    private void Start()
+    {
         SetStartTimer();
         SetGameTimer();
+
     }
 
     void SetStartTimer()
