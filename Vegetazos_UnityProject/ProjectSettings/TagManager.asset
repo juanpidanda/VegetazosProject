@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Platform
+  - Manager/Menus
+  - Manager/UI
   layers:
   - Default
   - TransparentFX
