@@ -24,8 +24,9 @@ public class CombatSceneUIManager : MonoBehaviour
 
             //Get Data
             int characterID = playersData[playerIndex].GetSelectedCharacterID();
+            int playerID = playersData[playerIndex].GetPlayerID();
             string playerName = playersData[playerIndex].GetPlayerName();
-            Sprite characterPortraitSprite = GetCharacterSprite(characterID, playerIndex);
+            Sprite characterPortraitSprite = GetCharacterSprite(characterID, playerID);
 
             #region POR SI DEJA DE FUNCIONAR LA FUNCION GETCHARACTERSPRITE
             /* 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class MenusBehaviour : MonoBehaviour
 {
     public GameObject pausePopUpMenu;
+    public GameObject howToPlayScreenMenu;
 
 
     [HideInInspector]
@@ -13,7 +14,14 @@ public class MenusBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        pausePopUpMenu.SetActive(false);
+        if(pausePopUpMenu != null)
+        {
+            pausePopUpMenu.SetActive(false);
+        }
+        if (howToPlayScreenMenu != null)
+        {
+            howToPlayScreenMenu.SetActive(false);
+        }
         openedMenusList.Clear();
     }
 
