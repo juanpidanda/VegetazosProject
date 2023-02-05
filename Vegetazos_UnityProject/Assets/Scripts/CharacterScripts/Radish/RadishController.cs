@@ -19,6 +19,7 @@ namespace Xolito.Control
         public Animator animatorXolos;
         [SerializeField] PlayerSettings pSettings = null;
         protected Movement.RadishMovement mover;
+        public PlayerFightingSystem fightingSystem;
 
         public AudioClip jump, dash;
         #endregion
@@ -28,7 +29,7 @@ namespace Xolito.Control
         {
             animatorXolos = GetComponent<Animator>();
             mover = GetComponent<Movement.RadishMovement>();
-
+            fightingSystem = GetComponent<PlayerFightingSystem>();
 
         }
 
@@ -74,10 +75,12 @@ namespace Xolito.Control
             if (direction < 0)
             {
                 this.GetComponent<SpriteRenderer>().flipX = true;
+                fightingSystem.isLookingRight = true;
             }
             else
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
+                fightingSystem.isLookingRight = false;
             }
         }
 
@@ -107,6 +110,23 @@ namespace Xolito.Control
             }
 
         }
+
+        public virtual void Attack(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                if (mover.InteractWithAttack())
+                {
+                    fightingSystem.Attack();
+                }
+            }
+        }
+
+        public virtual void Defense(InputAction.CallbackContext context)
+        {
+
+        }
+
         public virtual void SpecialAttack(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -114,7 +134,6 @@ namespace Xolito.Control
                 if (mover.InteractWithSpecialAttack())
                 {
                     animatorXolos.SetTrigger("specialattack");
-
                 }
             }
         }
